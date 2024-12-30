@@ -1,0 +1,70 @@
+#{extends 'main.html' /}
+
+#{if v}
+    #{set title: 'Edição de viagem!' /}
+#{/if}
+#{else}
+    #{set title:'Cadastrar viagem'/}
+#{/else}
+
+
+<div class="main-container">
+
+    <div class="painel">
+        <h2>Preencha os dados da viagem</h2><br>
+
+        <form action="@{Agencia.salvar}" method="post">
+
+            <input type="hidden" name="v.id" value="${v?.id}" />
+
+            <div class="mb-3">
+                <label class="form-label" for="cliente">Cliente:</label><br>
+                <div class="user-box">
+                    <input class="custom-input" id="cliente" type="text" name="v.cliente" value="${v?.cliente}">
+                    <label for="cliente">Cliente</label>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="destino">Destino:</label><br>
+                <div class="user-box">
+                    <input class="custom-input" type="text" id="destino" name="v.destino" value="${v?.destino}" placeholder="exemplo: Paris, Nova York, etc.">
+                    <label for="destino">Destino</label>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="dataPartida">Data de Partida:</label><br>
+                <div class="user-box">
+                    <input class="custom-input" type="date" id="dataPartida" name="v.dataPartida" value="${v?.dataPartida}">
+                    <label for="dataPartida">Data de Partida</label>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="dataRetorno">Data de Retorno:</label><br>
+                <div class="user-box">
+                    <input class="custom-input" type="date" id="dataRetorno" name="v.dataRetorno" value="${v?.dataRetorno}">
+                    <label for="dataRetorno">Data de Retorno</label>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="descricao" class="form-label">Descrição:</label><br>
+                <div class="user-box">
+                    <textarea class="custom-input" id="descricao" name="v.descricao" rows="3">${v?.descricao}</textarea>
+                    <label for="descricao">Descrição</label>
+                </div>
+            </div>
+
+            <div>
+                <input title="Salvar" type="submit" class="btn btn-primary" value="Salvar">
+            </div>
+
+        </form><br>
+        <a title="Listar viagens" class="btn btn-outline-secondary" href="@{Agencia.listar}">Lista de Viagens</a> 
+    </div>
+    
+    
+
+</div>
