@@ -31,10 +31,12 @@
     <th>Data de Partida</th>
     <th>Data de Retorno</th>
     <th>Descrição</th>
+    <th>ID do Usuário</th>
     <th>Ações</th>
   </tr>
 </thead>
 
+<tbody>
     #{list items: viagens, as:'viagem'}
       
       <tr>
@@ -43,6 +45,7 @@
         <td>${viagem.dataPartida}</td>
         <td>${viagem.dataRetorno}</td>
         <td>${viagem.descricao}</td>
+        <td>${viagem.usuario?.nome}</td>
         
         <td>
           <a title="Excluir" href="@{Viagens.remover(viagem.id)}" onclick="return confirm('Tem certeza que deseja excluir esta viagem?')">
@@ -61,7 +64,7 @@
         </td>
       </tr>
    #{/list}
-   
+   </tbody>
 </table>
 
 <a class="btn btn-primary" href="@{Viagens.form}">Adicionar Uma Nova Viagem</a>

@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.List;
 
+import models.Usuario;
 import models.Viagem;
 
 import play.mvc.Controller;
@@ -9,18 +10,22 @@ import play.mvc.Controller;
 public class Viagens extends Controller {
     
     public static void form(){
-        render();
+    	List<Usuario> usuarios = Usuario.findAll();
+        render(usuarios);
     }
     
-    public static void salvar(Viagem v) {
-        String mensagem = "Cadastro realizado com sucesso!";
-        if(v.id != null){
-            mensagem = "Viagem editada com sucesso!";
-        }
+    public static void salvar(Viagem v, long usuarioId ) {
+    	String mensagem = "Cadastro realizado com sucesso!";
+    	Usuario usuario = Usuario.findById(usuarioId);
+        v.usuario = usuario;
+        
+        if (v.id != null) {
+    	  mensagem = "Viagem editada com sucesso!";	  
+      }
         v.save();
         flash.success(mensagem);
         listar(null);
-    }
+      }
     
     public static void listar(String termo) {
         List<Viagem> viagens = null;
@@ -42,7 +47,8 @@ public class Viagens extends Controller {
     
     public static void editar(Long id) {
         Viagem v = Viagem.findById(id);
-        renderTemplate("Agencia/form.html", v);
+        List<Usuario> usuarios = Usuario.findAll();
+        renderTemplate("Viagens/form.html", v, usuarios);
     }
 
 }

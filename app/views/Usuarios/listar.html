@@ -1,15 +1,120 @@
 #{extends 'main.html' /}
 #{set title:'Lista de usuários' /}
-         
-         
-         
-    #{list items:usuarios, as:'u'}
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: #f4f4f9;
+        color: #333;
+        background: url('/public/images/aus.png') no-repeat center center fixed;
+        background-size: cover; 
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center; 
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    .user-list-container {
+        width: 90%;
+        max-width: 800px;
+        background: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        padding: 20px;
+    }
+
+    .user-list-title {
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 20px;
+        color: #444;
+        text-align: center;
+    }
+
+    .user-card {
+        padding: 15px 20px;
+        border-bottom: 1px solid #ddd;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .user-card:last-child {
+        border-bottom: none;
+    }
+
+    .user-card label {
+        font-weight: 500;
+        color: #555;
+    }
+
+    .user-card span {
+        display: inline-block;
+        margin-left: 10px;
+        font-weight: 400;
+        color: #333;
+    }
+
+    .action-buttons {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+    }
+
+    .action-buttons a {
+        text-decoration: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: 500;
+        transition: background 0.3s ease;
+    }
+
+    .action-buttons a.edit {
+        background: #03a9f4;
+        color: #fff;
+    }
+
+    .action-buttons a.edit:hover {
+        background: #0288d1;
+    }
+
+    .action-buttons a.remove {
+        background: #f44336;
+        color: #fff;
+    }
+
+    .action-buttons a.remove:hover {
+        background: #d32f2f;
+    }
+</style>
+
+<div class="user-list-container">
+    <div class="user-list-title">Lista de Usuários</div>
     
-    #{if session.get("u.nivel").equals("1")}
-	    <a href="@{Usuarios.editar(u.id)}">Editar</a>
-	    <a href="@{Usuarios.remover(u.id)}">Remover</a>
-    #{/if}
-    
-    ${u.nome} ${u.email} <br/>
-    
+    #{list items:u, as:'u'}
+    <div class="user-card">
+        <div>
+            <label>Nome do Usuário:</label>
+            <span>${u.nome}</span>
+        </div>
+        <div>
+            <label>Endereço de Email:</label>
+            <span>${u.email}</span>
+        </div>
+        
+        #{if session.get("usuario.nivel").equals("1")}
+        <div class="action-buttons">
+            <a href="@{Usuarios.editar(u.id)}" class="edit">Editar</a>
+            <a href="@{Usuarios.remover(u.id)}" class="remove">Remover</a>
+        </div>
+        #{/if}
+    </div>
     #{/list}
+</div>
