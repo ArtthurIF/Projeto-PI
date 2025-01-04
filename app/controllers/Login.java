@@ -8,22 +8,19 @@ import play.mvc.Controller;
 
 public class Login extends Controller{
 	
-	//localhost:9000/login/teste para cadastrar no banco de dados
-	public static void teste() {
-		
-		Usuario u = new Usuario();
-		u.nome = "Arthur";
-		u.email = "arthur@gmail.com";
-		u.senha = "12345";
-		u.cpf = "0439851";
-		u.nivel = 1;
-	
-		u.save();
-		
-		form();
-	}
-
 	public static void form() {
+		
+		if (Usuario.count() == 0) {
+			Usuario u = new Usuario();
+			u.cpf = "0439851";
+			u.email = "arthur@gmail.com";
+			u.nivel = 1;
+			u.nome = "Arthur";
+			u.senha = "123456";
+			u.save();
+			
+		}
+		
 		render();
 	}
 	
@@ -33,6 +30,7 @@ public class Login extends Controller{
 				email, Crypto.passwordHash(senha)).first();
 		
 		if(usu==null) {
+			flash.error("Login ou senha invalidos");
 			Login.form();
 		} else {
 			session.put("usuario.email", usu.email);

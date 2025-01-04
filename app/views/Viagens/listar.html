@@ -26,12 +26,11 @@
 
  <thead>
   <tr>
-    <th>Cliente</th>
     <th>Destino</th>
     <th>Data de Partida</th>
     <th>Data de Retorno</th>
     <th>Descrição</th>
-    <th>ID do Usuário</th>
+    <th>Usuário</th>
     <th>Ações</th>
   </tr>
 </thead>
@@ -40,7 +39,6 @@
     #{list items: viagens, as:'viagem'}
       
       <tr>
-        <td>${viagem.cliente}</td>
         <td>${viagem.destino}</td>
         <td>${viagem.dataPartida}</td>
         <td>${viagem.dataRetorno}</td>

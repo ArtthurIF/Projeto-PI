@@ -108,6 +108,10 @@
             <label>Endereço de Email:</label>
             <span>${u.email}</span>
         </div>
+        <div>
+            <label>Nivel de Autoridade:</label>
+            <span>${u.nivel}</span>
+        </div>
         
         #{if session.get("usuario.nivel").equals("1")}
         <div class="action-buttons">

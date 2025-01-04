@@ -79,16 +79,10 @@
                 <input type="hidden" name="v.id" value="${v?.id}" />
 
                 <div class="mb-3">
-                    <label class="form-label" for="cliente">Cliente:</label><br>
-                    <div class="user-box">
-                        <input class="custom-input" id="cliente" type="text" name="v.cliente" value="${v?.cliente}">
-                    </div>
-                </div>
-
-                <div class="mb-3">
                     <label class="form-label" for="destino">Destino:</label><br>
                     <div class="user-box">
                         <input class="custom-input" type="text" id="destino" name="v.destino" value="${v?.destino}" placeholder="exemplo: Paris, Nova York, etc.">
+                    <span class='vermelho'>#{error 'v.destino' /}</span>
                     </div>
                 </div>
 
@@ -96,6 +90,7 @@
                     <label class="form-label" for="dataPartida">Data de Partida:</label><br>
                     <div class="user-box">
                         <input class="custom-input" type="date" id="dataPartida" name="v.dataPartida" value="${v?.dataPartida}">
+                    <span class='vermelho'>#{error 'v.dataPartida' /}</span>
                     </div>
                 </div>
 
@@ -103,6 +98,7 @@
                     <label class="form-label" for="dataRetorno">Data de Retorno:</label><br>
                     <div class="user-box">
                         <input class="custom-input" type="date" id="dataRetorno" name="v.dataRetorno" value="${v?.dataRetorno}">
+                    <span class='vermelho'>#{error 'v.dataRetorno' /}</span>
                     </div>
                 </div>
 
@@ -110,6 +106,7 @@
                     <label for="descricao" class="form-label">Descrição:</label><br>
                     <div class="user-box">
                         <textarea class="custom-input" id="descricao" name="v.descricao" rows="3">${v?.descricao}</textarea>
+                    <span class='vermelho'>#{error 'v.descricao' /}</span>
                     </div>
                 </div>
 
@@ -123,7 +120,11 @@
                     ${usuario.nome}
                 </option>
             #{/list}
+
         </select>
+        <br/>
+                         <span class='vermelho'>#{error 'v.usuario' /}</span>
+               
     </div>
              
  

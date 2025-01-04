@@ -1,8 +1,3 @@
-.classpath
-.project
-.settings/
-eclipse/
-modules/
-documentation/
-tmp/
-data/
+mensagem não aparece
+mudanças de validação não são aplicadas
+confimação senha não é cadastrado no banco

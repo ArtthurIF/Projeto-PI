@@ -39,40 +39,52 @@
             <input type="hidden" name="u.id" value="${u?.id}" />
 
             <div class="mb-3">
-                <label class="form-label" for="cliente">Nome:</label><br>
+                <label class="form-label" for="nome">Nome:</label><br>
                 <div class="user-box">
                     <input class="custom-input" id="nome" type="text" name="u.nome" value="${u?.nome}">
+                <span class='vermelho'>#{error 'u.nome' /}</span>
                 </div>
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="destino">Email:</label><br>
+                <label class="form-label" for="email">Email:</label><br>
                 <div class="user-box">
                     <input class="custom-input" type="text" id="email" name="u.email" value="${u?.email}" placeholder="exemplo: exemplo@gmail.com">
+                <span class='vermelho'>#{error 'u.email' /}</span>
+                
                 </div>
             </div>
             
 			<div class="mb-3"> 
-                <label class="form-label" for="destino">Senha:</label><br>
+                <label class="form-label" for="senha">Senha:</label><br>
                 <div class="user-box">
                     <input class="custom-input" type="password" id="senha" name="senha" value="">
+                <span class='vermelho'>#{error 'u.senha' /}</span>
+                
                 </div>
             </div>
             
+            Confirma&ccedil;&atilde; o da senha
+            <input type="password" name="u.confimacaoSenha" value=""> <br/>
+            <span class='vermelho'>#{error 'u.confimacaoSenha' /}</span>
+                
             <div class="mb-3">
-                <label class="form-label" for="dataPartida">CPF:</label><br>
+                <label class="form-label" for="cpf">CPF:</label><br>
                 <div class="user-box">
                     <input class="custom-input" type="text" id="cpf" name="u.cpf" value="${u?.cpf}" placeholder="exemplo: _ _ _._ _ _._ _ _-_ _">
+                <span class='vermelho'>#{error 'u.cpf' /}</span>
+                
                 </div>
             </div>
             
             Nivel:
-            
+            #{if session.get("usuario.nivel").equals("1")}
             <select class="custom-select" name="u.nivel">
             <option value="0" #{if usuario?.nivel == 0} selected #{/if}>Comum</option>
             <option value="1" #{if usuario?.nivel == 1} selected #{/if}>Admin</option>
             </select>
-            
+            #{/if}
+                
             <br>
             <br/>
 

@@ -110,6 +110,11 @@
 <body>
     <div class="painel">
         <h2>Login</h2>
+        
+        #{if flash.error}
+        	<div class="msgVermelho">${flash.error}</div>
+        #{/if}
+        
         <form action="@{Login.logar}" method="Post">
             <div class="user-box">
                 <input type="email" name="email" required>
