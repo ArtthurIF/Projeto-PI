@@ -67,7 +67,7 @@ public class Usuarios extends Controller {
     public static void listar(String termo) {
         List<Usuario> u = null;
         if(termo == null) {
-            u = Usuario.find("status = ?1", Status.ATIVO).fetch();
+            u = Usuario.findAll();
         } else {
             u = Usuario.find("lower(nome) like ?1",
                     "%" + termo.toLowerCase() + "%").fetch();
@@ -77,8 +77,7 @@ public class Usuarios extends Controller {
     
     public static void remover(long id) {
         Usuario u = Usuario.findById(id);
-        u.status = Status.INATIVO;
-        u.save();
+        u.delete();
         listar(null);
     } 
     

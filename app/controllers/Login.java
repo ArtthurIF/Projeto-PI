@@ -18,7 +18,6 @@ public class Login extends Controller{
 			u.nivel = 1;
 			u.nome = "Arthur";
 			u.senha = "123456";
-			u.status = Status.ATIVO;
 			u.save();
 			
 		}

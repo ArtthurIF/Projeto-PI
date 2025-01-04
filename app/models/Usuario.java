@@ -41,12 +41,6 @@ public class Usuario extends Model{
 
 	public int nivel;
 	
-	@Enumerated(EnumType.STRING)
-	public Status status;
-	
-	public Usuario() {
-		this.status = Status.ATIVO;
-	}
 	
 	@OneToMany(mappedBy = "usuario")
 	public List<Viagem> viagens;

@@ -7,6 +7,8 @@ import javax.persistence.ManyToOne;
 import net.sf.oval.constraint.DateRange;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -24,6 +26,13 @@ public class Viagem extends Model {
     public Date dataPartida;
 	@Required
     public Date dataRetorno;
+
+	@Enumerated(EnumType.STRING)
+	public Status status;
+	
+	public Viagem() {
+		this.status = Status.ATIVO;
+	}
     
     @ManyToOne
     @Required
