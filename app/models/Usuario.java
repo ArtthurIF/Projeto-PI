@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
@@ -38,6 +40,13 @@ public class Usuario extends Model{
 	public String cpf;
 
 	public int nivel;
+	
+	@Enumerated(EnumType.STRING)
+	public Status status;
+	
+	public Usuario() {
+		this.status = Status.ATIVO;
+	}
 	
 	@OneToMany(mappedBy = "usuario")
 	public List<Viagem> viagens;

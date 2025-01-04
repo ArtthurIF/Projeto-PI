@@ -57,7 +57,7 @@ public class Viagens extends Controller {
         if(termo == null) {
             viagens = Viagem.findAll();
         } else {
-            viagens = Viagem.find("lower(cliente) like ?1",
+            viagens = Viagem.find("lower(destino) like ?1",
                     "%" + termo.toLowerCase() + "%").fetch();
         }
         render(viagens, termo);

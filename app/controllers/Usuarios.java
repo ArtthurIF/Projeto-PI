@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import models.Status;
 import models.Usuario;
 import models.Viagem;
 import play.cache.Cache;
@@ -66,7 +67,7 @@ public class Usuarios extends Controller {
     public static void listar(String termo) {
         List<Usuario> u = null;
         if(termo == null) {
-            u = Usuario.findAll();
+            u = Usuario.find("status = ?1", Status.ATIVO).fetch();
         } else {
             u = Usuario.find("lower(nome) like ?1",
                     "%" + termo.toLowerCase() + "%").fetch();
@@ -76,8 +77,8 @@ public class Usuarios extends Controller {
     
     public static void remover(long id) {
         Usuario u = Usuario.findById(id);
-        u.delete();
-        flash.success("Usuario removido com sucesso!");
+        u.status = Status.INATIVO;
+        u.save();
         listar(null);
     } 
     
