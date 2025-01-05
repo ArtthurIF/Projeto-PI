@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import models.Status;
+import models.UF;
 import models.Usuario;
 import models.Viagem;
 import play.cache.Cache;
@@ -16,11 +18,14 @@ public class Viagens extends Controller {
 
     
     public static void form(){
+    	
+    	List<UF> ufs = Arrays.asList(UF.values());
+    	
     	List<Usuario> usuarios = Usuario.findAll();
     	
     	Viagem v = (Viagem) Cache.get("v");
-    	Cache.get("v");
-        render(usuarios, "v");
+    	
+        render(usuarios, "v", ufs);
     }
  
     
@@ -74,9 +79,12 @@ public class Viagens extends Controller {
     } 
     
     public static void editar(Long id) {
+    	
+    	List<UF> ufs = Arrays.asList(UF.values());
+    	
         Viagem v = Viagem.findById(id);
         List<Usuario> usuarios = Usuario.findAll();
-        renderTemplate("Viagens/form.html", v, usuarios);
+        renderTemplate("Viagens/form.html", v, usuarios, ufs);
     }
 
 }

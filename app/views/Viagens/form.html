@@ -86,6 +86,29 @@
                     </div>
                 </div>
 
+
+               UF:
+                <select id="uf">
+	             <option></option>
+	             #{list items:ufs, as:'u'}
+		         <option #{if u == v?.cidade?.uf} selected #{/if} value="${u}">${u}</option>
+               	#{/list}
+               </select> <br/>
+
+       <br>
+       <br>
+       
+            <label for="cidade">Cidade</label>
+                <select id="cidade" name="v.cidade.id">
+                    <option></option>
+                         #{list items:cidades, as:'c'}
+                 <option #{if c.id == v?.cidade?.id} selected #{/if} value="${c.id}">${c.nome}</option>
+                         #{/list}
+               </select>
+               
+      <br>
+      <br>
+       
                 <div class="mb-3">
                     <label class="form-label" for="dataPartida">Data de Partida:</label><br>
                     <div class="user-box">
