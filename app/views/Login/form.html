@@ -46,6 +46,14 @@
             text-align: center;
         }
 
+        .painel h3 {
+            margin: 0 0 30px;
+            color: #fff;
+            font-weight: 500;
+            font-size: 20px;
+            text-align: center;
+        }
+
         .user-box {
             position: relative;
             margin-bottom: 30px;
@@ -89,6 +97,7 @@
         }
 
         .btn-primary {
+        	text-decoration: none;
             background-color: #03e9f4;
             color: #111;
             border-radius: 8px;
@@ -118,13 +127,22 @@
         <form action="@{Login.logar}" method="Post">
             <div class="user-box">
                 <input type="email" name="email" required>
+                
+                <span class='vermelho'>#{error 'usu.email' /}</span>
                 <label for="email">Email</label>
             </div>
             <div class="user-box">
                 <input type="password" name="senha" required>
+                
+                <span class='vermelho'>#{error 'usu.senha' /}</span>
                 <label for="senha">Senha</label>
             </div>
             <button type="submit" class="btn-primary">Entrar</button>
+        <div>
+        <br>
+        <h3>Não possuo Cadastro</h3>
+        <a href="/Usuarios/form" class="btn-primary">Cadastrar</a>
+</div>
         </form>
     </div>
 </body>

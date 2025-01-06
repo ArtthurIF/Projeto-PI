@@ -78,15 +78,22 @@
             </div>
             
             Nivel:
-            #{if session.get("usuario.nivel").equals("1")}
             <select class="custom-select" name="u.nivel">
             <option value="0" #{if usuario?.nivel == 0} selected #{/if}>Comum</option>
+            
+            <!--#{if session.get("usuario.nivel").equals("1")} -->
+            
             <option value="1" #{if usuario?.nivel == 1} selected #{/if}>Admin</option>
+            
+           	<!-- #{/if} -->
+            
             </select>
-            #{/if}
                 
             <br>
-            <br/>
+            <br>
+            
+            
+            
 
             <div>
                 <input title="Salvar" type="submit" class="btn btn-primary" value="Salvar">

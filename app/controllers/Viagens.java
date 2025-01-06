@@ -13,6 +13,9 @@ import models.Usuario;
 import models.Viagem;
 import play.cache.Cache;
 import play.mvc.Controller;
+import play.mvc.With;
+
+@With(Segurança.class)
 
 public class Viagens extends Controller {
 

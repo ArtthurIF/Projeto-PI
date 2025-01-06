@@ -158,10 +158,11 @@
     </head>
     <body>
         <div class="navbar">
-            #{if session.get("usuario.nivel").equals("1")}
                 <a href="@{Usuarios.form}">Cadastro de Usuário</a>
-            #{/if}
+            
+            #{if session.get("usuario.nivel").equals("1")}
             <a href="@{Usuarios.listar}">Lista de Usuários</a>
+            #{/if}
             <a href="@{Viagens.form}">Cadastro de Viagens</a>
             <a href="@{Login.sair}">Sair</a>
         </div>

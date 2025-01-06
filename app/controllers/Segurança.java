@@ -7,14 +7,19 @@ public class Segurança extends Controller{
 
 	@Before
 	static void verificar() {
+		
+		if (request.action.equals("Usuarios.form")) {
+			return;
+		}
+		
 		if(session.contains("usuario.email") == false) {
 		Login.form();
 		}
 	}
 
-	@Before(unless={"Usuarios.listar"})
+	@Before(unless={"Usuarios.form", "Viagens.form", "Viagens.listar", "Usuarios.salvar"})
 	static void permissoes() {
-		if(session.get("usuario.nivel").equals("1")==false) {
+		if(session.get("usuario.nivel")== null || session.get("usuario.nivel").equals("1")==false) {
 			renderText("Acesso negado");
 		}
 	}
