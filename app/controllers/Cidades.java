@@ -8,9 +8,9 @@ import play.mvc.Controller;
 
 public class Cidades extends Controller {
 	
-	public static void listar (String uf) {
+	public static void listar (UF uf) {
 		
-		List<Cidade> cidades = Cidade.find("uf = ?", UF.valueOf(uf) ).fetch();
+		List<Cidade> cidades = Cidade.find("uf = ?", uf ).fetch();
 		
 		renderJSON(cidades);
 	}

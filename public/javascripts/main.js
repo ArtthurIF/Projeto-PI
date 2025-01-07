@@ -1,23 +1,22 @@
-$ (function() {
-	
-	$ ("#uf").change(function() {
-		
-		uf = $ ("#uf").val();
-		
-		$.ajax({
-			url:"Cidades/listar",
-			data:"uf=" + uf,
-			dataType:"json",
-			success:function(c) {
-				
-				$("#cidades").html("");
-				for (var i = 0; i < c.length; i++) {
-					opt = "<option value ="+c[i].id+">"+c[i].nome+"</option>";
-					$("#cidades").append(opt);
-				}
-			}
-			
-		});
-	});
-	
+$(function() {
+    $("#uf").change(function() {
+        let uf = $("#uf").val();
+        
+        $.ajax({
+            url: "/Viagens/obterCidades",  // Atualize para a rota correta
+            type: "GET",
+            data: { uf: uf },
+            dataType: "json",
+            success: function(cidades) {
+                $("#cidades").html('<option value="">Selecione uma cidade</option>'); // Limpa o select e adiciona um placeholder
+                cidades.forEach(function(cidade) {
+                    let option = `<option value="${cidade.id}">${cidade.nome}</option>`;
+                    $("#cidades").append(option);
+                });
+            },
+            error: function() {
+                alert("Erro ao buscar cidades. Tente novamente.");
+            }
+        });
+    });
 });

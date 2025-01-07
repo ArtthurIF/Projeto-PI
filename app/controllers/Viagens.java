@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import models.Cidade;
 import models.Status;
 import models.UF;
 import models.Usuario;
@@ -27,6 +28,10 @@ public class Viagens extends Controller {
 		renderBinary(v.midia.get());
 	}
     
+	public static void obterCidades(String uf) {
+	    List<Cidade> cidades = Cidade.find("uf = ?1", UF.valueOf(uf)).fetch();
+	    renderJSON(cidades);
+	}
 	
     public static void form(){
     	
