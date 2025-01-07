@@ -13,7 +13,7 @@ import play.mvc.With;
 
 @With(Segurança.class)
 public class Usuarios extends Controller {
-    
+	
     public static void form(){
     	Usuario u = (Usuario) Cache.get("u");
     	Cache.clear();

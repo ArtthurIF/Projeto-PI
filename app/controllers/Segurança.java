@@ -17,7 +17,7 @@ public class Segurança extends Controller{
 		}
 	}
 
-	@Before(unless={"Usuarios.form", "Viagens.form", "Viagens.listar", "Usuarios.salvar"})
+	@Before(unless={"Usuarios.form", "Viagens.form", "Viagens.listar", "Usuarios.salvar", "Viagens.salvar", "Viagens.userPhoto"})
 	static void permissoes() {
 		if(session.get("usuario.nivel")== null || session.get("usuario.nivel").equals("1")==false) {
 			renderText("Acesso negado");

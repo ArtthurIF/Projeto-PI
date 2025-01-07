@@ -158,12 +158,14 @@
     </head>
     <body>
         <div class="navbar">
-                <a href="@{Usuarios.form}">Cadastro de Usuário</a>
-            
-            #{if session.get("usuario.nivel").equals("1")}
+        
+            <span>Olá, ${session.get("usuario.nome") != null ? session.get("usuario.nome") : "Visitante"}!</span>
+			<a href="@{Usuarios.form}">Cadastrar Usuários</a>
+			#{if session.get("usuario.nivel").equals("1")}
             <a href="@{Usuarios.listar}">Lista de Usuários</a>
             #{/if}
             <a href="@{Viagens.form}">Cadastro de Viagens</a>
+            <a href="@{Viagens.listar}">Feed de Viagens</a>
             <a href="@{Login.sair}">Sair</a>
         </div>
 

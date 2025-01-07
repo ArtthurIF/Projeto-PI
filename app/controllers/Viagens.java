@@ -19,7 +19,15 @@ import play.mvc.With;
 
 public class Viagens extends Controller {
 
+
+	public static void userPhoto(Long id) {
+		Viagem v = Viagem.findById(id);
+		notFoundIfNull(v);
+		response.setContentTypeIfNotSet(v.midia.type());
+		renderBinary(v.midia.get());
+	}
     
+	
     public static void form(){
     	
     	List<UF> ufs = Arrays.asList(UF.values());

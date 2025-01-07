@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import play.data.validation.Required;
+import play.db.jpa.Blob;
 import play.db.jpa.Model;
 
 @Entity
@@ -29,6 +30,8 @@ public class Viagem extends Model {
 
 	@Enumerated(EnumType.STRING)
 	public Status status;
+	
+	public Blob midia;
 	
 	public Viagem() {
 		this.status = Status.ATIVO;

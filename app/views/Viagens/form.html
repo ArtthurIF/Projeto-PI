@@ -75,8 +75,15 @@
         <div class="painel">
             <h2>Preencha os dados da viagem</h2><br>
 
-            <form action="@{Viagens.salvar}" method="post">
+            <form action="@{Viagens.salvar}" enctype="multipart/form-data" method="post">
                 <input type="hidden" name="v.id" value="${v?.id}" />
+
+                <div class="mb-3">
+                    <label class="form-label" for="destino">Adicionar foto da viagem:</label><br>
+                    <div class="user-box">
+                        <input class="custom-input" type="file" name="v.midia"">
+                    </div>
+                </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="destino">Destino:</label><br>

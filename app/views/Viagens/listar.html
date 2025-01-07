@@ -21,17 +21,46 @@
 
 </form> <br>
 
+<style>
+.foto-viagem {
+    width: 200px;   /* Define a largura máxima da imagem */
+    height: 200px;  /* Define a altura máxima da imagem */
+    object-fit: cover;  /* Garante que a imagem cubra o espaço sem distorcer */
+    border-radius: 8px; /* Borda arredondada */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Sombras suaves para dar destaque */
+}
+
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: url('/public/images/feed.jpg') no-repeat center center fixed;
+            background-size: cover; 
+            display: flex;
+            justify-content: center; 
+            align-items: center;     
+            font-family: 'Roboto', sans-serif; 
+            color: #fff;
+        }
+    
+</style>
 
 <table class="table table-hover">
 
  <thead>
   <tr>
+    <th>Foto da viagem</th>
     <th>Destino</th>
     <th>Data de Partida</th>
     <th>Data de Retorno</th>
     <th>Descrição</th>
     <th>Usuário</th>
+    #{if session.get("usuario.nivel").equals("1")}
+            
     <th>Ações</th>
+    
+    #{/if}
   </tr>
 </thead>
 
@@ -39,13 +68,17 @@
     #{list items: viagens, as:'viagem'}
       
       <tr>
+      	
+      	<td><img src="@{Viagens.userPhoto(viagem.id)}" class="foto-viagem"/></td>
         <td>${viagem.destino}</td>
         <td>${viagem.dataPartida}</td>
         <td>${viagem.dataRetorno}</td>
         <td>${viagem.descricao}</td>
         <td>${viagem.usuario?.nome}</td>
         
+        #{if session.get("usuario.nivel").equals("1")}
         <td>
+        
           <a title="Excluir" href="@{Viagens.remover(viagem.id)}" onclick="return confirm('Tem certeza que deseja excluir esta viagem?')">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
               <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
@@ -60,6 +93,7 @@
              </svg>
          </a>
         </td>
+        #{/if}
       </tr>
    #{/list}
    </tbody>

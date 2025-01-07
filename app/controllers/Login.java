@@ -36,6 +36,7 @@ public class Login extends Controller{
 		} else {
 			session.put("usuario.email", usu.email);
 			session.put("usuario.nivel", usu.nivel);
+			session.put("usuario.nome", usu.nome);
 			
 			Viagens.form();
 		}
