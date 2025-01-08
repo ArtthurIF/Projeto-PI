@@ -2,5 +2,5 @@ package models;
 
 public enum UF {
 
-	RN, CE
+	Nacional, Internacional
 }

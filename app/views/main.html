@@ -164,8 +164,15 @@
 			#{if session.get("usuario.nivel").equals("1")}
             <a href="@{Usuarios.listar}">Lista de Usuários</a>
             #{/if}
+            
+            <!-- Um Administrador pode cadastrar uma nova viagem, porem, como não é sua função 
+            principal, o link para o form está oculto -->
+            #{if session.get("usuario.nivel").equals("0")}
             <a href="@{Viagens.form}">Cadastro de Viagens</a>
-            <a href="@{Viagens.listar}">Feed de Viagens</a>
+            #{/if}
+            #{if session.get("usuario.nivel").equals("1")}
+            <a href="@{Viagens.listar}">Viagens</a>
+            #{/if}
             <a href="@{Login.sair}">Sair</a>
         </div>
 

@@ -20,8 +20,6 @@ import play.db.jpa.Model;
 public class Viagem extends Model {
 	
 	@Required
-    public String destino;
-	@Required
     public String descricao;
 	@Required
     public Date dataPartida;
@@ -30,6 +28,10 @@ public class Viagem extends Model {
 
 	@Enumerated(EnumType.STRING)
 	public Status status;
+	
+	@ManyToOne
+	@Required
+	public Cidade cidade;
 	
 	public Blob midia;
 	

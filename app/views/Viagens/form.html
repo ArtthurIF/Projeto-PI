@@ -1,195 +1,205 @@
-#{extends 'main.html' /}
-
-#{if v}
-    #{set title: 'Edição de viagem!' /}
-#{/if}
-#{else}
-    #{set title: 'Cadastrar viagem' /}
-#{/else}
+#{extends 'main.html' /} #{if v} #{set title: 'Edição de viagem!' /}
+#{/if} #{else} #{set title: 'Cadastrar viagem' /} #{/else}
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+@import
+	url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap')
+	;
 
-    html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: url('/public/images/viagens.png') no-repeat center center fixed; 
-        background-size: 80%; 
-        background-position: 100% 100%;
-        font-family: 'Roboto', sans-serif; 
-        color: #fff;
-    }
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: url('/public/images/viagens.png') no-repeat center center
+		fixed;
+	background-size: 80%;
+	background-position: 100% 100%;
+	font-family: 'Roboto', sans-serif;
+	color: #fff;
+}
 
-    .painel {
-        position: absolute; 
-        left: 20px;          
-        top: 75%;            
-        transform: translateY(-50%);
-        background: rgba(0, 0, 0, 0.8); 
-        padding: 40px;
-        border-radius: 50px;
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8);
-        transition: all 0.3s ease;
-        width: 500px;   
-        margin: 50px; 
-        margin-bottom: 80px;
-    }
+.painel {
+	position: absolute;
+	left: 20px;
+	top: 75%;
+	transform: translateY(-50%);
+	background: rgba(0, 0, 0, 0.8);
+	padding: 40px;
+	border-radius: 50px;
+	box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8);
+	transition: all 0.3s ease;
+	width: 500px;
+	margin: 50px;
+	margin-bottom: 80px;
+}
 
-    .painel:hover {
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
-    }
+.painel:hover {
+	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
+}
 
-    .painel h2 {
-        margin: 0 0 30px;
-        color: #fff;
-        font-weight: 500;
-        font-size: 24px;
-    }
-    
-    .carrossel-container {
-        position: fixed; 
-        top: 25%; 
-        right: 10px; 
-        z-index: 10; 
-        width: 400px; 
-    }
+.painel h2 {
+	margin: 0 0 30px;
+	color: #fff;
+	font-weight: 500;
+	font-size: 24px;
+}
 
-    .carousel-inner img {
-        height: 270px; 
-        object-fit: cover; 
-        border-radius: 20px; 
-    }
-    
-    .carousel {
-        border-radius: 20px;
-        overflow: hidden; 
-    }
+.carrossel-container {
+	position: fixed;
+	top: 25%;
+	right: 10px;
+	z-index: 10;
+	width: 400px;
+}
+
+.carousel-inner img {
+	height: 270px;
+	object-fit: cover;
+	border-radius: 20px;
+}
+
+.carousel {
+	border-radius: 20px;
+	overflow: hidden;
+}
 </style>
 
 <body>
-    <div class="main-container">
-        <div class="painel">
-            <h2>Preencha os dados da viagem</h2><br>
+	<div class="main-container">
+		<div class="painel">
+			<h2>Preencha os dados da viagem</h2>
 
-            <form action="@{Viagens.salvar}" enctype="multipart/form-data" method="post">
-                <input type="hidden" name="v.id" value="${v?.id}" />
+			<form action="@{Viagens.salvar}" enctype="multipart/form-data"
+				method="post">
+				<input type="hidden" name="v.id" value="${v?.id}" />
 
-                <div class="mb-3">
-                    <label class="form-label" for="destino">Adicionar foto da viagem:</label><br>
-                    <div class="user-box">
-                        <input class="custom-input" type="file" name="v.midia"">
-                    </div>
-                </div>
+				<div class="mb-3">
+					<label class="form-label" for="destino">Adicionar foto da
+						viagem:</label><br>
+					<div class="user-box">
+						<input class="custom-input" type="file" name="v.midia">
+					</div>
+				</div>
 
-                <div class="mb-3">
-                    <label class="form-label" for="destino">Destino:</label><br>
-                    <div class="user-box">
-                        <input class="custom-input" type="text" id="destino" name="v.destino" value="${v?.destino}" placeholder="exemplo: Paris, Nova York, etc.">
-                    <span class='vermelho'>#{error 'v.destino' /}</span>
-                    </div>
-                </div>
+				<label for="uf">Tipo de Viagem:</label> <select id="uf" name="uf">
+					<option value="">Selecione o tipo</option>
+					#{list items:ufs, as:'u'}
+						<option value="${u}" #{if u==v?.cidade?.uf}selected#{/if}>${u}</option>
+					#{/list}
+				</select> 
+				<br/>
+				<br/> 
+				<label for="cidades">Destino:</label> 
+				<select id="cidades"
+					name="v.cidade.id">
+					<option value="">Selecione uma cidade</option>
+					#{list items:cidades, as:'cidade'}
+						<option value="${cidade.id}" #{if cidade.id==v?.cidade?.id}selected#{/if}>${cidade.nome}</option>
+						
+						
+					#{/list}
+				</select>
+<br>
+<span class='vermelho'>#{error 'v.cidade' /}</span>
+				<br/>
+				
+				
+					
+				<div class="mb-3">
+				<label class="form-label">Quando pretendo viajar:</label><br>
+					<label class="form-label" for="dataPartida">Data de
+						Partida:</label><br>
+					<div class="user-box">
+						<input class="custom-input" type="date" id="dataPartida"
+							name="v.dataPartida" value="${v?.dataPartida}"> <span
+							class='vermelho'>#{error 'v.dataPartida' /}</span>
+					</div>
+				</div>
+
+				<div class="mb-3">
+					<label class="form-label" for="dataRetorno">Data de
+						Retorno:</label><br>
+					<div class="user-box">
+						<input class="custom-input" type="date" id="dataRetorno"
+							name="v.dataRetorno" value="${v?.dataRetorno}"> <span
+							class='vermelho'>#{error 'v.dataRetorno' /}</span>
+					</div>
+				</div>
+
+				<div class="mb-3">
+				<label for="descricao" class="form-label">Quantidade de passageiros e nomes:</label><br>
+					<div class="user-box">
+						<textarea class="custom-input" id="descricao" name="v.descricao"
+							rows="3">${v?.descricao}</textarea>
+						<span class='vermelho'>#{error 'v.descricao' /}</span>
+					</div>
+				</div>
 
 
-             <label for="uf">UF:</label>
-<select id="uf" name="uf">
-    <option value="">Selecione o estado</option>
-    #{list items:ufs, as:'u'}
-        <option value="${u}" #{if u == v?.cidade?.uf} selected #{/if}>${u}</option>
-    #{/list}
-</select>
+				<div class="mb-3">
+					<label class="form-label" for="usuario">Comprador:</label><br> <select
+						class="custom-select" name="usuarioId">
+						<option value="">Selecione o Usuário</option> 
+						#{list items: usuarios, as: 'usuario'}
+							<option value="${usuario.id}" #{if v?.usuario?.id==usuario.id} selected#{/if}>${usuario.nome}</option>
+						#{/list}
 
-<br><br>
+					</select> <br /> <span class='vermelho'>#{error 'v.usuario' /}</span>
+				</div>
 
-<label for="cidades">Cidade:</label>
-<select id="cidades" name="v.cidade.id">
-    <option value="${v?.cidade?.id}">${v?.cidade?.nome}</option>
-</select>
 
-       
-                <div class="mb-3">
-                    <label class="form-label" for="dataPartida">Data de Partida:</label><br>
-                    <div class="user-box">
-                        <input class="custom-input" type="date" id="dataPartida" name="v.dataPartida" value="${v?.dataPartida}">
-                    <span class='vermelho'>#{error 'v.dataPartida' /}</span>
-                    </div>
-                </div>
+				<div>
+					<input title="Salvar" type="submit" class="btn btn-primary"
+						value="Salvar">
+				</div>
+			</form>
+			<br> <a title="Listar viagens" class="btn btn-outline-secondary"
+				href="@{Viagens.listar}">Lista de Viagens</a>
+		</div>
 
-                <div class="mb-3">
-                    <label class="form-label" for="dataRetorno">Data de Retorno:</label><br>
-                    <div class="user-box">
-                        <input class="custom-input" type="date" id="dataRetorno" name="v.dataRetorno" value="${v?.dataRetorno}">
-                    <span class='vermelho'>#{error 'v.dataRetorno' /}</span>
-                    </div>
-                </div>
+		<div class="carrossel-container">
+			<div id="carouselExample" class="carousel slide"
+				data-bs-ride="carousel">
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img src="/public/images/ny.jpg" class="d-block w-100"
+							alt="Foto 1">
+					</div>
+					<div class="carousel-item">
+						<img src="/public/images/paris.jpg" class="d-block w-100"
+							alt="Foto 2">
+					</div>
+					<div class="carousel-item">
+						<img src="/public/images/hawai.jpg" class="d-block w-100"
+							alt="Foto 3">
+					</div>
+					<div class="carousel-item">
+						<img src="/public/images/pisa.jpg" class="d-block w-100"
+							alt="Foto 4">
+					</div>
+					<div class="carousel-item">
+						<img src="/public/images/reinounido.jpg" class="d-block w-100"
+							alt="Foto 5">
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button"
+					data-bs-target="#carouselExample" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button"
+					data-bs-target="#carouselExample" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
+		</div>
+	</div>
 
-                <div class="mb-3">
-                    <label for="descricao" class="form-label">Descrição:</label><br>
-                    <div class="user-box">
-                        <textarea class="custom-input" id="descricao" name="v.descricao" rows="3">${v?.descricao}</textarea>
-                    <span class='vermelho'>#{error 'v.descricao' /}</span>
-                    </div>
-                </div>
-
-  
-      <div class="mb-3">
-        <label class="form-label" for="usuario">Usuário:</label><br>
-        <select class="custom-select" name="usuarioId">
-            <option value="">Selecione o Usuário</option>
-            #{list items: usuarios, as: 'usuario'}
-                <option value="${usuario.id}" #{if v?.usuario?.id == usuario.id} selected #{/if}>
-                    ${usuario.nome}
-                </option>
-            #{/list}
-
-        </select>
-        <br/>
-                         <span class='vermelho'>#{error 'v.usuario' /}</span>
-               
-    </div>
-             
- 
-                <div>
-                    <input title="Salvar" type="submit" class="btn btn-primary" value="Salvar">
-                </div>
-            </form><br>
-            <a title="Listar viagens" class="btn btn-outline-secondary" href="@{Viagens.listar}">Lista de Viagens</a> 
-        </div>
-        
-        <div class="carrossel-container">
-            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="/public/images/ny.jpg" class="d-block w-100" alt="Foto 1">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/public/images/paris.jpg" class="d-block w-100" alt="Foto 2">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/public/images/hawai.jpg" class="d-block w-100" alt="Foto 3">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/public/images/pisa.jpg" class="d-block w-100" alt="Foto 4">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/public/images/reinounido.jpg" class="d-block w-100" alt="Foto 5">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Importação do Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Importação do Bootstrap JS -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

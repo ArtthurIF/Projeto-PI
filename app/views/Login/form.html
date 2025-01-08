@@ -1,168 +1,165 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Esta página funcionará como o "Index" -->
+<title>Login</title>
+<style>
+@import
+	url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap')
+	;
 
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            background: url('/public/images/login.png') no-repeat center center fixed;
-            background-size: cover; 
-            display: flex;
-            justify-content: center; 
-            align-items: center;     
-            font-family: 'Roboto', sans-serif; 
-            color: #fff;
-        }
-        
-        footer {
-  color: #000;
-  text-align: center;
-  padding: 10px;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  font-size: 14px;
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background: url('/public/images/login.png') no-repeat center center
+		fixed;
+	background-size: cover;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Roboto', sans-serif;
+	color: #fff;
 }
-        
 
-        .painel {
-            position: absolute; 
-            left: 50%;          
-            top: 45%;            
-            transform: translate(-65%, -50%);  
-            background: rgba(0, 0, 0, 0.8); 
-            padding: 50px;
-            border-radius: 50px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8);
-            transition: all 0.3s ease;
-            width: 300px; 
-            margin: 50px; 
-        }
+footer {
+	color: #000;
+	text-align: center;
+	padding: 10px;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	font-size: 14px;
+}
 
-        .painel:hover {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
-        }
+.painel {
+	position: absolute;
+	left: 50%;
+	top: 45%;
+	transform: translate(-65%, -50%);
+	background: rgba(0, 0, 0, 0.8);
+	padding: 50px;
+	border-radius: 50px;
+	box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8);
+	transition: all 0.3s ease;
+	width: 300px;
+	margin: 50px;
+}
 
-        .painel h2 {
-            margin: 0 0 30px;
-            color: #fff;
-            font-weight: 500;
-            font-size: 24px;
-            text-align: center;
-        }
+.painel:hover {
+	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
+}
 
-        .painel h3 {
-            margin: 0 0 30px;
-            color: #fff;
-            font-weight: 500;
-            font-size: 20px;
-            text-align: center;
-        }
+.painel h2 {
+	margin: 0 0 30px;
+	color: #fff;
+	font-weight: 500;
+	font-size: 24px;
+	text-align: center;
+}
 
-        .user-box {
-            position: relative;
-            margin-bottom: 30px;
-        }
+.painel h3 {
+	margin: 0 0 30px;
+	color: #fff;
+	font-weight: 500;
+	font-size: 20px;
+	text-align: center;
+}
 
-        .user-box input {
-            width: 90%;
-            padding: 12px 15px;
-            font-size: 16px;
-            color: #fff;
-            border: 1px solid #fff;
-            outline: none;
-            background: transparent;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
+.user-box {
+	position: relative;
+	margin-bottom: 30px;
+}
 
-        .user-box input:focus {
-            border: 1px solid #03e9f4;
-            box-shadow: 0 0 10px rgba(3, 233, 244, 0.6);
-        }
+.user-box input {
+	width: 90%;
+	padding: 12px 15px;
+	font-size: 16px;
+	color: #fff;
+	border: 1px solid #fff;
+	outline: none;
+	background: transparent;
+	border-radius: 8px;
+	transition: all 0.3s ease;
+}
 
-        .user-box label {
-            position: absolute;
-            top: 5px;
-            left: 15px;
-            padding: 10px 0;
-            font-size: 16px;
-            color: #fff;
-            pointer-events: none;
-            transition: 0.5s;
-        }
+.user-box input:focus {
+	border: 1px solid #03e9f4;
+	box-shadow: 0 0 10px rgba(3, 233, 244, 0.6);
+}
 
-        .user-box input:focus ~ label, 
-        .user-box input:valid ~ label {
-            top: -30px;
-            left: 0;
-            color: #03e9f4;
-            font-size: 12px;
-            font-weight: 500;
-        }
+.user-box label {
+	position: absolute;
+	top: 5px;
+	left: 15px;
+	padding: 10px 0;
+	font-size: 16px;
+	color: #fff;
+	pointer-events: none;
+	transition: 0.5s;
+}
 
-        .btn-primary {
-        	text-decoration: none;
-            background-color: #03e9f4;
-            color: #111;
-            border-radius: 8px;
-            padding: 12px 25px;
-            text-transform: uppercase;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            border: none;
-            width: 100%;
-        }
+.user-box input:focus ~ label, .user-box input:valid ~ label {
+	top: -30px;
+	left: 0;
+	color: #03e9f4;
+	font-size: 12px;
+	font-weight: 500;
+}
 
-        .btn-primary:hover {
-            background-color: #029db1;
-            color: #fff;
-            transform: scale(1.05);
-        }
-    </style>
+.btn-primary {
+	text-decoration: none;
+	background-color: #03e9f4;
+	color: #111;
+	border-radius: 8px;
+	padding: 12px 25px;
+	text-transform: uppercase;
+	font-size: 16px;
+	transition: all 0.3s ease;
+	border: none;
+	width: 100%;
+}
+
+.btn-primary:hover {
+	background-color: #029db1;
+	color: #fff;
+	transform: scale(1.05);
+}
+</style>
 </head>
 <body>
-    <div class="painel">
-        <h2>Login</h2>
-        
-        #{if flash.error}
-        	<div class="msgVermelho">${flash.error}</div>
-        #{/if}
-        
-        <form action="@{Login.logar}" method="Post">
-            <div class="user-box">
-                <input type="email" name="email" required>
-                
-                <span class='vermelho'>#{error 'usu.email' /}</span>
-                <label for="email">Email</label>
-            </div>
-            <div class="user-box">
-                <input type="password" name="senha" required>
-                
-                <span class='vermelho'>#{error 'usu.senha' /}</span>
-                <label for="senha">Senha</label>
-            </div>
-            <button type="submit" class="btn-primary">Entrar</button>
-        <div>
-        <br>
-        <h3>Não possuo Cadastro</h3>
-        <a href="/Usuarios/form" class="btn-primary">Cadastrar</a>
-</div>
+	<div class="painel">
+		<h2>Login</h2>
 
-    </div>
-<footer>
-  © 2025 Arthemys - Conectando pessoas e explorando destinos 🏹
-  <br>
-  Suporte: <a href="mailto:arthur.borges@escolar.ifrn.edu.br?subject=Suporte Arthemys&body=Olá, preciso de ajuda com...">arthur.borges@escolar.ifrn.edu.br</a>
-</footer>
+		#{if flash.error}
+		<div class="msgVermelho">${flash.error}</div>
+		#{/if}
+
+		<form action="@{Login.logar}" method="Post">
+			<div class="user-box">
+				<input type="email" name="email" required> <span
+					class='vermelho'>#{error 'usu.email' /}</span> <label for="email">Email</label>
+			</div>
+			<div class="user-box">
+				<input type="password" name="senha" required> <span
+					class='vermelho'>#{error 'usu.senha' /}</span> <label for="senha">Senha</label>
+			</div>
+			<button type="submit" class="btn-primary">Entrar</button>
+			<div>
+				<br>
+				<h3>Não possuo Cadastro</h3>
+				<a href="/Usuarios/form" class="btn-primary">Cadastrar</a>
+			</div>
+	</div>
+	<footer>
+		© 2025 Arthemys - Conectando pessoas e explorando destinos 🏹 <br>
+		Suporte: <a
+			href="mailto:arthur.borges@escolar.ifrn.edu.br?subject=Suporte Arthemys&body=Olá, preciso de ajuda com...">arthur.borges@escolar.ifrn.edu.br</a>
+	</footer>
 
 
-        </form>
+	</form>
 </body>
 </html>
