@@ -69,7 +69,7 @@ public class Viagens extends Controller {
 		}
 		v.save();
 		flash.success(mensagem);
-		listar(null);
+		form();
 	}
 	
 	public static void listar(String termo) {
